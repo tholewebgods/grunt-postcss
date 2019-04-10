@@ -133,4 +133,37 @@ exports.gruntPostcss = {
         test.ok(!grunt.file.exists('tmp/noWriteDest.scss'));
         test.done();
     },
+
+    ensureSequentialRun1: function(test) {
+        var actual = {
+            css1: grunt.file.read('tmp/ensureSequentialRun1sequence1.css'),
+            css2: grunt.file.read('tmp/ensureSequentialRun2sequence1.css')
+        };
+
+        var expected = {
+            css1: grunt.file.read('test/expected/ensureSequentialRun1.css'),
+            css2: grunt.file.read('test/expected/ensureSequentialRun2.css'),
+        };
+
+        test.strictEqual(actual.css1, expected.css1);
+        test.strictEqual(actual.css2, expected.css2);
+        test.done();
+    },
+
+    // Identical validation
+    ensureSequentialRun2: function(test) {
+        var actual = {
+            css1: grunt.file.read('tmp/ensureSequentialRun1sequence2.css'),
+            css2: grunt.file.read('tmp/ensureSequentialRun2sequence2.css')
+        };
+
+        var expected = {
+            css1: grunt.file.read('test/expected/ensureSequentialRun1.css'),
+            css2: grunt.file.read('test/expected/ensureSequentialRun2.css'),
+        };
+
+        test.strictEqual(actual.css1, expected.css1);
+        test.strictEqual(actual.css2, expected.css2);
+        test.done();
+    },
 };

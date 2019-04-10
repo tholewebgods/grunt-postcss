@@ -1,0 +1,8 @@
+
+:root {
+	--foo: #333;
+}
+
+.moo {
+	color: var(--foo);
+}
